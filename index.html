@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" integrity="sha256-2pUeJf+y0ltRPSbKOeJh09ipQFYxUdct5nTY6GAXswA=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <style>
+    .container {
+      max-width: 720px;
+    }
+  </style>
+  <body>
+    <nav class="navbar is-primary">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            <h1>Vue Chart Example</h1>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <section class="section">
+      <div class="container">
+        <div class="box">
+          <h2 class="title is-5">Monthly Sales Chart</h2>
+          <canvas id="my-chart" width="500" height="300"></canvas>
+        </div>
+      </div>
+    </section>
+    <button onclick="tambahData()">tambah</button>
+  </body>
+  <script>
+    let myChart = new Chart(document.getElementById('my-chart'), {
+    type: 'line',
+    data: {
+        labels: ['1', '2', '3', '4', '5'],
+        datasets: [
+        {
+            // label: 'Grafik PH',
+            borderColor: 'rgba(50, 115, 220, 0.5)',
+            data: [300, 700, 450, 750, 450]
+        }
+        ]
+    }
+    })
+
+    // console.log(myChart.data)
+    
+    function tambahData(){
+      // const newDataSet = {
+      //   label: 'Grafik PH',
+      //   borderColor: 'rgba(50, 115, 220, 0.5)',
+      //   data: [300, 700, 450, 750, 450,100]
+      // }
+      // myChart.data.datasets[0].push(newDataSet)
+      // myChart.update()
+      // console.log(myChart.data.datasets[0])
+      // let arr = myChart.data.datasets[0].data
+      // arr.push(200)
+      // myChart.update()
+      // 
+      let labels = myChart.data.labels
+      labels.push('6')
+      let arr = myChart.data.datasets[0].data
+      arr.push(696)
+      myChart.update()
+      console.log(arr)
+      console.log(labels)
+      // console.log(arr)
+    }
+
+</script>
+</html>
