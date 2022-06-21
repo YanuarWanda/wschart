@@ -65,10 +65,21 @@
       // myChart.update()
       // 
       let labels = myChart.data.labels
-      labels.push('6')
+      labels.push(labels.length + 1)
       let arr = myChart.data.datasets[0].data
       arr.push(696)
       myChart.update()
+
+      console.log(labels.length);
+
+      if (labels.length > 10) {
+        labels.shift();
+        arr.shift();
+        myChart.update();
+      }
+
+      console.log(labels.length);
+
       console.log(arr)
       console.log(labels)
       // console.log(arr)
