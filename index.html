@@ -35,42 +35,44 @@
     <button onclick="tambahData()">tambah</button>
   </body>
   <script>
+    let ws = new WebSocket('ws://127.0.0.1:4000')
+
+    ws.onmessage = event => {
+      console.log(event.data)
+    }
+
     let myChart = new Chart(document.getElementById('my-chart'), {
     type: 'line',
+    options:{
+        scales:{
+            x: {
+                display: false
+            }
+        }
+    },
     data: {
         labels: ['1', '2', '3', '4', '5'],
         datasets: [
         {
             // label: 'Grafik PH',
             borderColor: 'rgba(50, 115, 220, 0.5)',
-            data: [300, 700, 450, 750, 450]
+            data: [3,3,6,4,2]
         }
         ]
     }
     })
 
-    // console.log(myChart.data)
-    
+ 
+
+
     function tambahData(){
-      // const newDataSet = {
-      //   label: 'Grafik PH',
-      //   borderColor: 'rgba(50, 115, 220, 0.5)',
-      //   data: [300, 700, 450, 750, 450,100]
-      // }
-      // myChart.data.datasets[0].push(newDataSet)
-      // myChart.update()
-      // console.log(myChart.data.datasets[0])
-      // let arr = myChart.data.datasets[0].data
-      // arr.push(200)
-      // myChart.update()
-      // 
+
       let labels = myChart.data.labels
       labels.push(labels.length + 1)
       let arr = myChart.data.datasets[0].data
-      arr.push(696)
+      arr.push(14)
       myChart.update()
 
-      console.log(labels.length);
 
       if (labels.length > 10) {
         labels.shift();
@@ -78,11 +80,6 @@
         myChart.update();
       }
 
-      console.log(labels.length);
-
-      console.log(arr)
-      console.log(labels)
-      // console.log(arr)
     }
 
 </script>
