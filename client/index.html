@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-socket-js/1.0.0/web_socket.min.js" integrity="sha512-jtr9/t8rtBf1Sv832XjG1kAtUECQCqFnTAJWccL8CSC82VGzkPPih8rjtOfiiRKgqLXpLA1H/uQ/nq2bkHGWTQ==" crossorigin="anonymous" referrerpolicy="no-referrer" type="module"></script>
     <link rel="stylesheet" href="./index.css">
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Circle-icons-water.svg/2048px-Circle-icons-water.svg.png">
     <title>IOT</title>
   </head>
 
@@ -22,25 +23,28 @@
         </button>
       </div>
       <div class="text-white">
-        Hello World
+        Monitoring
       </div>
     </nav>
 
-    <section class="section">
-      <div class="columns-2">
-        <div class="column">
-          <h2 class="title-5">Kadar PH</h2>
+    <section class="p-4">
+      <div class="flex gap-4">
+        <div class="column p-4 flex flex-col gap-4">
+          <h2 class="text-xl font-bold text-center">Kadar pH</h2>
           <canvas id="phChart" width="500" height="300"></canvas>
+          <div class="flex gap-4">
+            <button id="addPhBtn" class="py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md w-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Tambah Data pH</button>
+            <button id="addPhBtnAction" class="py-2 px-4 bg-yellow-500 text-white font-semibold rounded-lg shadow-md w-full hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Tambah Kadar pH+</button>
+            <button id="subPhBtnAction" class="py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md w-full hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Tambah Kadar pH-</button>
+          </div>
         </div>
-        <!-- kadar air -->
-        <div class="column">
-          <h2 class="title-5">Tingkat Air</h2>
+        <div class="column p-4 flex flex-col gap-4">
+          <h2 class="text-xl font-bold text-center">Tingkat Air</h2>
           <canvas id="wlChart" width="500" height="300"></canvas>
+          <button id="addWlBtn" class="py-2 px-4 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Tambah Data Tingkat Air</button>
         </div>
       </div>
     </section>
-    <button id="addPhBtn" class="py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Tambah Data pH</button>
-    <button id="addWlBtn" class="py-2 px-4 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Tambah Data Tingkat Air</button>
 
     <script src="./sendws.js"></script>
   </body>

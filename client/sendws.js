@@ -26,6 +26,23 @@ window.addEventListener('load', () => {
         chart.update()
     }
 
+    const sendNotification = (title, body) => {
+        Notification.requestPermission(function (status) {
+            console.log("[permission]", status, Notification.permission);
+        });
+
+        const n = new Notification(title, {
+            tag: location.href,
+            lang: 'id',
+            body: body,
+            icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Circle-icons-water.svg/2048px-Circle-icons-water.svg.png',
+            renotify: true
+        })
+
+        n.addEventListener('click', () => n.close());
+        n.addEventListener('close', () => n.close());
+    }
+
     const phChartEl = document.getElementById('phChart')
     const phChart = new Chart(phChartEl, {
         type: 'line',
@@ -100,8 +117,16 @@ window.addEventListener('load', () => {
 
         if (eventData.hasOwnProperty('ph')) {
             updateData(phChart, eventData['ph'])
+
+            if (eventData['ph'] < 7 || eventData['ph'] >= 8) {
+                sendNotification("pH Air Tidak Stabil", `pH Air saat ini ada di nilai ${eventData['ph']}`)
+            }
         } else if (eventData.hasOwnProperty('air')) {
-            updateData(wlChart, eventData['air'] / 1000)
+            updateData(wlChart, (eventData['air'] / 1000).toFixed(2))
+
+            if (eventData['air'] <= 500) {
+                sendNotification("Air mau habis nih", `Tingkat air saat ini ada di nilai ${(eventData['air'] / 1000).toFixed(2)} m`)
+            }
         }
     })
 
@@ -120,4 +145,10 @@ window.addEventListener('load', () => {
 
     document.getElementById('addPhBtn').addEventListener('click', () => tambahData('ph', 14.0, 1.0))
     document.getElementById('addWlBtn').addEventListener('click', () => tambahData('air', 1000, 0))
+    document.getElementById('addPhBtnAction').addEventListener('click', () => {
+        console.log("Kadar pH+ air sudah ditambahkan")
+    })
+    document.getElementById('subPhBtnAction').addEventListener('click', () => {
+        console.log("Kadar pH- air sudah ditambahkan")
+    })
 })
