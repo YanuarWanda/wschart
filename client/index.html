@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web-socket-js/1.0.0/web_socket.min.js" integrity="sha512-jtr9/t8rtBf1Sv832XjG1kAtUECQCqFnTAJWccL8CSC82VGzkPPih8rjtOfiiRKgqLXpLA1H/uQ/nq2bkHGWTQ==" crossorigin="anonymous" referrerpolicy="no-referrer" type="module"></script>
+    <link rel="stylesheet" href="./index.css">
+    <title>IOT</title>
+  </head>
+
+  <body>
+    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+      <div class="block lg:hidden">
+        <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+          <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <title>Menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="text-white">
+        Hello World
+      </div>
+    </nav>
+
+    <section class="section">
+      <div class="columns-2">
+        <div class="column">
+          <h2 class="title-5">Kadar PH</h2>
+          <canvas id="phChart" width="500" height="300"></canvas>
+        </div>
+        <!-- kadar air -->
+        <div class="column">
+          <h2 class="title-5">Tingkat Air</h2>
+          <canvas id="wlChart" width="500" height="300"></canvas>
+        </div>
+      </div>
+    </section>
+    <button id="addPhBtn">Tambah Data pH</button>
+    <button id="addWlBtn">Tambah Data Tingkat Air</button>
+
+    <script src="./sendws.js"></script>
+  </body>
+</html>
